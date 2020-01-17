@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GradeBook
 {
@@ -10,12 +6,28 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine("ye man");
-            Console.ReadKey();
+            double x;
+            double y;
+            double sum;
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            x = 34.12;
+            y = 23.21;
+
+            sum = x + y;
+
+            if (args.Length > 0)
+            {
+                Console.WriteLine($"Hey, {args[0]}!");
+                Console.ReadKey();
+            }
+
+            else
+            {
+                Console.WriteLine(sum);
+                Console.ReadKey();
+            }
+
+
         }
     }
 }

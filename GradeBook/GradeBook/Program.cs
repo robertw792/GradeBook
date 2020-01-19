@@ -17,7 +17,7 @@ namespace GradeBook
 
             if (args.Length > 0)
             {
-                Console.WriteLine($"Hey, {args[0]}!");
+                Console.WriteLine($"Hello, {args[0]}!");
                 Console.ReadKey();
             }
 

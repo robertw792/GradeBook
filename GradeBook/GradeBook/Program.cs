@@ -1,19 +1,28 @@
 using System;
+using System.Collections.Generic;
 
 namespace GradeBook
 {
     class Program
     {
         static void Main(string[] args)
-        {
-            double x;
-            double y;
-            double sum;
+        {         
+            var numbers = new [] { 12.7, 10.3, 6.11 };
 
-            x = 34.12;
-            y = 23.21;
+            List<double> grades = new List<double>() { 12.3, 12, 14.3 };
+            grades.Add(12);
+          
+            var results = 0.0;
 
-            sum = x + y;
+            foreach(var number in grades)
+            {
+                results += number;
+            }
+
+            results /= grades.Count;
+
+            Console.WriteLine($"Average grade is {results:N1}");
+            Console.ReadKey();
 
             if (args.Length > 0)
             {
@@ -23,8 +32,7 @@ namespace GradeBook
 
             else
             {
-                Console.WriteLine(sum);
-                Console.ReadKey();
+
             }
 
 

@@ -1,12 +1,10 @@
-using System;
 using Xunit;
-using GradeBook;
 namespace GradeBook.Tests
 {
-    public class BookTests
+    public class BookTest
     {
        [Fact]
-        public void Test1()
+        public void BookCalculatesAnAverageGrade()
         {
             // arrange
             var book = new Book("");

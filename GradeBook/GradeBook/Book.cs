@@ -10,12 +10,20 @@ namespace GradeBook
             grades = new List<double>();
             Name = name;
 
-        }
+        }       
 
         private List<double> grades = new List<double>();
-        public string Name;
+        private string name;
+        readonly string category = "Science";
+        public string Name
+        {
+            get;
+            private set;
+        }
+        
 
-        public void AddLetterGrade(char letter)
+        
+        public void AddGrade(char letter)
         {
 
             switch(letter)

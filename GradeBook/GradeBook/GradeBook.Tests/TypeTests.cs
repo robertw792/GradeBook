@@ -1,8 +1,24 @@
+using System;
 using Xunit;
 namespace GradeBook.Tests
 {
     public class TypeTest
     {
+
+        public void String()
+        {
+            string name = "Rob";
+            name.ToUpper();
+            /*
+             * this will fail, because the value can never be made uppercase due to being referenced by type
+             * you'd need a new variable to make this test pass as it will copy the amended value into the variable e.g.
+             * var upper = name.ToUpper();
+             * Assert.Equal("ROB", upper);
+            */
+
+            Assert.Equal("ROB", name);
+        }
+
 
         [Fact]
         public void CSharpIsPassByValue()
@@ -13,6 +29,27 @@ namespace GradeBook.Tests
 
             // assert
             Assert.Equal("Book 1", book1.Name);
+        }
+
+        [Fact]
+        public void e()
+        {
+            var x = GetInt();
+
+            SetInt(ref x);
+
+            Assert.Equal(23, x);
+
+        }
+
+        private int GetInt()
+        {
+            return 3;
+        }
+
+        private void SetInt( ref int x)
+        {
+            x = 23;
         }
 
         [Fact]

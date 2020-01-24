@@ -1,3 +1,4 @@
+using System.IO;
 using Xunit;
 namespace GradeBook.Tests
 {
@@ -22,7 +23,7 @@ namespace GradeBook.Tests
             Assert.Equal('C', stats.Letter);
         }
 
-        [Fact]
+       [Fact]
         public void AddGradeValidation()
         {
             var book = new InMemoryBook("Ma Nook");
@@ -31,23 +32,6 @@ namespace GradeBook.Tests
             book.AddGrade(22);
             
             Assert.Equal("Invalid Value", "Invalid Value");
-
-        }
-
-        
-        public void TestArrayLoopIndex()
-        {
-            var arrsa = new double[3] { 12, 23, 2};
-
-            var index = 0;
-             
-
-            while (index < arrsa.Length)
-            {
-                index++;
-            }
-
-            Assert.Equal(3, index);
 
         }
 
@@ -83,5 +67,17 @@ namespace GradeBook.Tests
             Assert.Equal('D', result.Letter);
         }
 
+
+        [Fact]
+        public void WriteToFile()
+        {
+            var location = @"N:\Repos\DiskBook.txt";
+
+            File.Open(location, FileMode.Open);
+           
+            File.AppendText("test");
+            Assert.Equal("test", "test");
+        }
     }
 }
+

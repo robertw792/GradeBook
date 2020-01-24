@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 
 namespace GradeBook
 {
@@ -6,7 +7,7 @@ namespace GradeBook
     {
         static void Main(string[] args)
         {
-            var book = new InMemoryBook("Robert's Grade Book");
+            IBook book = new DiskBook("GradeBook");
 
             book.GradeAdded += OnGradeAdded;
 
@@ -14,14 +15,13 @@ namespace GradeBook
 
             var stats = book.GetStatistics();
 
-            Console.WriteLine(book.Category);
             Console.WriteLine($"The highest grade of {book.Name} is {stats.High}");
             Console.WriteLine($"The lowest grade of {book.Name} is {stats.Low}");
             Console.WriteLine($"The average grade of {book.Name} is {stats.Average:N1}");
             Console.WriteLine($"The letter grade of {book.Name} is {stats.Letter}");
 
             Console.ReadKey();
-            
+
         }
 
         private static void EnterFiveGrades(IBook book)

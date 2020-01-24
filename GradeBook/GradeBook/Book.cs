@@ -5,28 +5,42 @@ namespace GradeBook
 {
     public delegate void GradeAddedDelegate(object sender, EventArgs args);
 
-
-
-    public class Book
+    public interface IBook
     {
-        public Book(string name)
+        void AddGrade(double grade);
+        Statistics GetStatistics();
+        string Name { get; }
+        event GradeAddedDelegate GradeAdded;
+    }
+
+    public abstract class Book : NamedObject, IBook
+    {
+        public Book(string name) : base(name)
+        {
+        }
+
+        public virtual event GradeAddedDelegate GradeAdded;
+
+        public abstract void AddGrade(double grade);
+
+        public virtual Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class InMemoryBook : Book
+    {
+        public InMemoryBook(string name) : base(name)
         {
             grades = new List<double>();
             Name = name;
-
         }       
 
         private List<double> grades = new List<double>();
         private string name;
         public readonly string Category = "Science";
-        public string Name
-        {
-            get;
-            set;
-        }
-        
-
-        
+     
         public void AddGrade(char letter)
         {
             switch(letter)
@@ -54,9 +68,7 @@ namespace GradeBook
         }
 
 
-        public event GradeAddedDelegate GradeAdded;
-
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             if(grade <= 100 && grade >= 0)
             { 
@@ -75,7 +87,9 @@ namespace GradeBook
 
         }
 
-        public Statistics GetStatistics()
+        public override event GradeAddedDelegate GradeAdded;
+
+        public override Statistics GetStatistics()
         {
             var result = new Statistics();
 
@@ -98,11 +112,11 @@ namespace GradeBook
 
         }
 
-        public char GetResultLetter(double grade)
+        public char GetResultLetter(double averageGrade)
         {
             var result = new Statistics();
 
-            switch (grade)
+            switch (averageGrade)
             {
                 case var d when d >= 90:
                     result.Letter = 'A';
@@ -127,5 +141,6 @@ namespace GradeBook
 
             return result.Letter;
         }
+
     }
 }
